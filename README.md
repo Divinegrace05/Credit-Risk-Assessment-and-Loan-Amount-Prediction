@@ -1,1 +1,1 @@
-# Credit-Risk-Assessment-with-Loan-Prediction
+# Credit-Risk-Assessment-with-Loan-Amount-Prediction
