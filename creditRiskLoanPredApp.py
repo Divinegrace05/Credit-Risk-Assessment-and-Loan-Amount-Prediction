@@ -1,111 +1,135 @@
-import streamlit as st
-import pandas as pd
+import streamlit as st 
 import pickle
-from sklearn.preprocessing import StandardScaler
-import xgboost as xgb
-import warnings
+import numpy as np
+import pandas as pd
 
-# Load the saved models, feature names, and scalers
+# Load the saved models
 with open("xgb_classifier.pkl", "rb") as file:
     xgb_classifier = pickle.load(file)
 
 with open("xgb_regressor.pkl", "rb") as file:
     xgb_regressor = pickle.load(file)
 
-# Load classification-specific feature names and scaler
-with open("classification_features.pkl", "rb") as f:
-    classification_feature_names = pickle.load(f)
+# Define the feature names for classification
+classification_feature_names = ['person_age', 'person_income', 'person_home_ownership', 
+                                 'person_emp_length', 'loan_intent', 'loan_grade', 
+                                 'loan_int_rate', 'loan_percent_income', 
+                                 'cb_person_default_on_file', 'cb_person_cred_hist_length']
 
-with open("scaler.pkl", "rb") as f:
-    classification_scaler = pickle.load(f)
-
-# Load regression-specific feature names and scaler
-with open("regression_features.pkl", "rb") as f:
-    regression_feature_names = pickle.load(f)
-
-with open("scaler_reg.pkl", "rb") as f:
-    regression_scaler = pickle.load(f)
+# Define the feature names for regression (excluding loan_int_rate)
+regression_feature_names = ['person_age', 'person_income', 'person_home_ownership', 
+                            'person_emp_length', 'loan_intent', 'loan_grade', 
+                            'loan_percent_income', 'cb_person_default_on_file', 
+                            'cb_person_cred_hist_length']
 
 # Function to preprocess input data for classification
-def preprocess_classification_input(data):
-    df = pd.DataFrame([data])
-    categorical_cols = ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
-    df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
-    for col in classification_feature_names:
-        if col not in df_encoded.columns:
-            df_encoded[col] = 0
-    df_encoded = df_encoded[classification_feature_names]
-    df_scaled = classification_scaler.transform(df_encoded)
-    return df_scaled
+def preprocess_input_classification(data):
+    home_ownership_map = {'RENT': 0, 'MORTGAGE': 1, 'OWN': 2, 'OTHER': 3}
+    loan_intent_map = {'PERSONAL': 0, 'EDUCATION': 1, 'MEDICAL': 2, 'VENTURE': 3, 
+                       'HOMEIMPROVEMENT': 4, 'DEBTCONSOLIDATION': 5}
+    loan_grade_map = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6}
+    default_history_map = {'Y': 1, 'N': 0}
+
+    data['person_home_ownership'] = home_ownership_map[data['person_home_ownership']]
+    data['loan_intent'] = loan_intent_map[data['loan_intent']]
+    data['loan_grade'] = loan_grade_map[data['loan_grade']]
+    data['cb_person_default_on_file'] = default_history_map[data['cb_person_default_on_file']]
+    
+    return data
 
 # Function to preprocess input data for regression
-def preprocess_regression_input(data):
-    df = pd.DataFrame([data])
-    categorical_cols = ['person_home_ownership', 'loan_intent', 'loan_grade', 'cb_person_default_on_file']
-    df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
-    for col in regression_feature_names:
-        if col not in df_encoded.columns:
-            df_encoded[col] = 0
-    df_encoded = df_encoded[regression_feature_names]
-    df_scaled = regression_scaler.transform(df_encoded)
-    return df_scaled
+def preprocess_input_regression(data):
+    print(f"Input data in preprocess_input_regression: {data}")  # Debug log
+    
+    home_ownership_map = {'RENT': 0, 'MORTGAGE': 1, 'OWN': 2, 'OTHER': 3}
+    loan_intent_map = {'PERSONAL': 0, 'EDUCATION': 1, 'MEDICAL': 2, 'VENTURE': 3, 'HOMEIMPROVEMENT': 4, 'DEBTCONSOLIDATION': 5}
+    loan_grade_map = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6}
+    default_history_map = {'Y': 1, 'N': 0}
+
+    # Remove the loan_int_rate since it's not needed for regression
+    data.pop('loan_int_rate', None)
+
+    # Apply mappings with error handling
+    try:
+        data['person_home_ownership'] = home_ownership_map[data['person_home_ownership']]
+        data['loan_intent'] = loan_intent_map[data['loan_intent']]
+        data['loan_grade'] = loan_grade_map[data['loan_grade']]
+        data['cb_person_default_on_file'] = default_history_map[data['cb_person_default_on_file']]
+    except KeyError as e:
+        print(f"KeyError in preprocess_input_regression: {e}")
+        print(f"Current data state: {data}")
+        raise
+
+    print(f"Processed data in preprocess_input_regression: {data}")  # Debug log
+    return data
 
 # Streamlit app
 st.title('Credit Risk Assessment and Loan Prediction')
 
 # Input fields
 st.header('Borrower Information')
-person_age = st.number_input('Age', min_value=18, max_value=100, value=30)
-person_income = st.number_input('Annual Income', min_value=0, value=50000)
-person_home_ownership = st.selectbox('Home Ownership', ['RENT', 'OWN', 'MORTGAGE', 'OTHER'])
-person_emp_length = st.number_input('Employment Length (years)', min_value=0, max_value=50, value=5)
+age = st.number_input('Age', min_value=18, max_value=100, value=26)
+income = st.number_input('Annual Income', min_value=0, value=1000)
+home_ownership = st.selectbox('Home Ownership', ['RENT', 'MORTGAGE', 'OWN', 'OTHER'])
+emp_length = st.number_input('Employment Length (years)', min_value=0, max_value=50, value=2)
 loan_intent = st.selectbox('Loan Intent', ['PERSONAL', 'EDUCATION', 'MEDICAL', 'VENTURE', 'HOMEIMPROVEMENT', 'DEBTCONSOLIDATION'])
-loan_grade = st.selectbox('Loan Grade', ['A', 'B', 'C', 'D', 'E', 'F', 'G'])
-loan_int_rate = st.slider('Interest Rate', min_value=1.0, max_value=25.0, value=10.0)
-loan_percent_income = st.slider('Loan Percent Income', min_value=0.0, max_value=1.0, value=0.1)
-cb_person_cred_hist_length = st.number_input('Credit History Length (years)', min_value=0, max_value=50, value=5)
-cb_person_default_on_file = st.selectbox('Previous Default', ['Y', 'N'])
+loan_grade = st.selectbox('Loan Grade', ['G', 'F', 'E', 'D', 'C', 'B', 'A'])
+loan_int_rate = st.slider('Loan Interest Rate', 0.0, 30.0, 11.14)  # Used for classification only
+loan_percent_income = st.slider('Loan Percent Income', 0.0, 1.0, 0.10)
+default_history = st.selectbox('Default History', ['Y', 'N'])
+credit_history_length = st.number_input('Credit History Length (years)', min_value=0, max_value=50, value=5)
 
-# Initialize session state
-if 'credit_risk_prediction' not in st.session_state:
-    st.session_state.credit_risk_prediction = None
+# Create a dictionary with the input data
+input_data = {
+    'person_age': age,
+    'person_income': income,
+    'person_home_ownership': home_ownership,
+    'person_emp_length': emp_length,
+    'loan_intent': loan_intent,
+    'loan_grade': loan_grade,
+    'loan_int_rate': loan_int_rate,
+    'loan_percent_income': loan_percent_income,
+    'cb_person_default_on_file': default_history,
+    'cb_person_cred_hist_length': credit_history_length
+}
 
-# Button to make credit risk prediction
+# Button to predict credit risk
 if st.button('Predict Credit Risk'):
-    # Prepare input data for classification
-    input_data = {
-        'person_age': person_age,
-        'person_income': person_income,
-        'person_home_ownership': person_home_ownership,
-        'person_emp_length': person_emp_length,
-        'loan_intent': loan_intent,
-        'loan_grade': loan_grade,
-        'loan_int_rate': loan_int_rate,
-        'loan_percent_income': loan_percent_income,
-        'cb_person_cred_hist_length': cb_person_cred_hist_length,
-        'cb_person_default_on_file': cb_person_default_on_file
-    }
+    print(f"Original input data: {input_data}")  # Debug log
+    
+    # Create separate copies for classification and regression
+    input_data_classification = input_data.copy()
+    input_data_regression = input_data.copy()
     
     # Preprocess input data for classification
-    processed_input_classification = preprocess_classification_input(input_data)
+    processed_data_classification = preprocess_input_classification(input_data_classification)
+    print(f"Processed classification data: {processed_data_classification}")  # Debug log
     
-    # Make credit risk prediction
-    st.session_state.credit_risk_prediction = xgb_classifier.predict(processed_input_classification)[0]
+    # Preprocess input data for regression
+    processed_data_regression = preprocess_input_regression(input_data_regression)
+    print(f"Processed regression data: {processed_data_regression}")  # Debug log
+ 
+    # Convert to numpy array for classification
+    input_array_classification = np.array([processed_data_classification[feature] for feature in classification_feature_names]).reshape(1, -1)
     
-    # Display results based on credit risk prediction
-    if st.session_state.credit_risk_prediction == 0:
-        st.header('Good News! You are eligible for a loan.')
+    # Make prediction for credit risk
+    prediction = xgb_classifier.predict(input_array_classification)[0]
     
-        # Button to predict loan amount (only shown if eligible)
-        if st.button('Predict Loan Amount'):
-    
-            # Preprocess input data for regression
-            processed_input_regression = preprocess_regression_input(input_data)
-            
-            # Predict loan amount
-            loan_amount_prediction = xgb_regressor.predict(processed_input_regression)[0]
-            
-            st.write(f"Predicted Loan Amount: ${loan_amount_prediction:.2f}")
-
+    if prediction == 1:
+        st.error("We're sorry, but you are not eligible for a loan at this time.")
     else:
-        st.header('You are not eligible for a loan.')
+        # Load the scaler for regression
+        with open("scaler_reg.pkl", "rb") as file:
+            scaler_reg = pickle.load(file)       
+        
+        # Convert processed data to DataFrame for scaling
+        regression_input_df = pd.DataFrame([processed_data_regression], columns=regression_feature_names)
+        
+        # Scale the regression input
+        scaled_regression_input = scaler_reg.transform(regression_input_df)
+        
+        # Make the loan amount prediction using the XGBRegressor
+        loan_amount = xgb_regressor.predict(scaled_regression_input)
+        
+        # Log the loan amount prediction output
+        st.success(f"Good News! You're eligible for a loan amount of {loan_amount[0]:,.2f}")
