@@ -104,7 +104,7 @@ Three models were used to predict loan amounts:
 - Higher values for these features increased the loan amount prediction, while lower values decreased the predicted amount.
 
 ## Deployment
-# [App](https://loanamountprediction.streamlit.app/)
+[Credit Risk and Loan Amount Prediction App](https://loanamountprediction.streamlit.app/)
 
 ## Key Results
 
