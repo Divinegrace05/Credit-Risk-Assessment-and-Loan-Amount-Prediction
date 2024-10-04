@@ -170,18 +170,10 @@ pip install -r requirements.txt
 
 ### Running the Streamlit App
 To start the Streamlit app, run the following command:
+
 streamlit run app.py
+
 Once the app is running, navigate to the provided local URL in your browser to interact with the loan prediction models.
-
-.
-├── app.py                  # Streamlit application
-├── README.md               # Project documentation
-├── requirements.txt        # Python dependencies
-├── data/                   # Dataset files
-├── notebooks/              # Jupyter Notebooks with analysis and model development
-├── models/                 # Saved model files
-└── visuals/                # Visual outputs and graphs
-
 
 
 
