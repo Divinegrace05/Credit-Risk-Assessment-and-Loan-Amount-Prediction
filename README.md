@@ -2,58 +2,32 @@
 
 ![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
 
-
 ## Project Summary
-This project addresses critical challenges in financial lending by analyzing a loan dataset to predict credit risk and loan amounts. The dataset, sourced from Kaggle, contains 32,581 observations across 12 variables, including borrower demographics, financial indicators, and loan characteristics.
+This project addresses critical challenges in financial lending by analyzing a loan dataset to predict credit risk and loan amounts. The dataset, sourced from [Kaggle](https://www.kaggle.com/datasets/laotse/credit-risk-dataset?resource=download), contains 32,581 observations across 12 variables, including borrower demographics, financial indicators, and loan characteristics.
+
 Data preparation included handling missing values, removing duplicates, and addressing outliers in income and employment length. We used pandas for data manipulation and scikit-learn for preprocessing, applying StandardScaler for feature scaling and LabelEncoder for categorical variables.
+
 For credit risk prediction, we tested multiple models such as Logistic Regression, Decision Trees, Random Forest, K-Nearest Neighbors, Gradient Boosting, and XGBoost. XGBoost proved most effective, achieving 93.8% accuracy and an F1 score of 0.842. Loan amount prediction employed Linear Regression, XGBoost, and Artificial Neural Networks, with XGBoost again leading with an R² of 0.99 and an RMSE of 498.28.
+
 Model performance was assessed using an 80-20 train-test split, with metrics such as accuracy, precision, and F1 score for classification, and RMSE, MSE, and R² for regression. SHAP and LIME were applied to enhance interpretability, identifying income, loan-to-income ratio, and loan intent as key predictors.
+
 The project was deployed using Streamlit, offering an interactive interface for real-time credit risk and loan amount predictions. This deployment enhances accessibility, providing valuable tools for lenders to make informed decisions.
-
-The project includes:
-- Data cleaning and preprocessing
-- Exploratory data analysis (EDA)
-- Building and evaluating machine learning models
-- Model interpretability using SHAP and LIME
-- Streamlit App Deployment
-
-### Objectives:
-1. **Credit Risk Classification**: To predict whether a loan applicant will default or not based on their profile.
-2. **Loan Amount Prediction**: To predict suitable loan amounts for applicants who are likely to not default.
 
 ## Business Understanding
 
 ### Stakeholders
-- **Financial Institutions** (e.g., Banks, Credit Unions): Responsible for managing lending and risk.
-- **Loan Applicants**: Borrowers seeking loans for various purposes.
-- **Credit Bureaus**: Agencies managing credit reports.
-- **Investors & Shareholders**: Those with stakes in financial institutions.
-- **Regulatory Bodies**: Ensuring compliance in lending practices.
-- **Loan Officers**: Individuals assessing loan eligibility.
+- Financial Institutions (e.g., Banks, Credit Unions): Responsible for managing lending and risk.
+- Loan Applicants: Borrowers seeking loans for various purposes.
+- Credit Bureaus: Agencies managing credit reports.
+- Investors & Shareholders: Those with stakes in financial institutions.
+- Regulatory Bodies: Ensuring compliance in lending practices.
+- Loan Officers: Individuals assessing loan eligibility.
 
 ### Key Questions:
 1. Which borrower profiles are most likely to default on their loans?
 2. What factors most strongly influence loan approvals?
 3. How can institutions optimize loan offerings for various demographics?
 4. How effective are machine learning models in predicting loan amounts and credit risk?
-
-## Data Understanding
-
-### Dataset Source
-The dataset was obtained from [Kaggle](https://www.kaggle.com/datasets/laotse/credit-risk-dataset?resource=download), consisting of 32,581 observations across 12 variables, including:
-
-- `person_age`: Age of the borrower
-- `person_income`: Borrower’s annual income
-- `person_home_ownership`: Type of home ownership
-- `person_emp_length`: Employment length in years
-- `loan_intent`: Purpose of the loan
-- `loan_grade`: Loan grade based on creditworthiness (A-G)
-- `loan_amnt`: Loan amount
-- `loan_int_rate`: Interest rate on the loan
-- `loan_status`: Loan default status (0 = non-default, 1 = default)
-- `loan_percent_income`: Loan amount as a percentage of income
-- `cb_person_cred_hist_length`: Borrower's credit history length in years
-- `cb_person_default_on_file`: Previous default status
 
 ## Exploratory Data Analysis (EDA)
 
@@ -77,14 +51,6 @@ The dataset was obtained from [Kaggle](https://www.kaggle.com/datasets/laotse/cr
    - Younger borrowers (21-30) tend to default more often.
 
    ![Default Status by Age Group](Images/default_status_by_age_group)
-
-## Data Preprocessing
-
-Data preprocessing involved:
-- **Handling missing values**
-- **Encoding categorical variables** using techniques other than one-hot encoding (avoiding dummy variables)
-- **Standardizing numerical features** for model performance improvement
-- **Splitting data** into train and test sets
 
 ## Modeling
 
@@ -132,6 +98,16 @@ Three models were used to predict loan amounts:
 - **SHAP** summary plot showed that `loan_percent_income` and `person_income` were the most impactful features.
 - Higher values for these features increased the loan amount prediction, while lower values decreased the predicted amount.
 
+## Deployment
+# Credit-Risk-Assessment-with-Loan-Amount-Prediction
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_01](https://github.com/user-attachments/assets/18110a12-ba21-4935-9990-1076ee928c5a)
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_15](https://github.com/user-attachments/assets/32096529-563e-4ce3-a1bd-b36e357c9ab7)
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 15_17_36](https://github.com/user-attachments/assets/7a5290c9-44b6-4bcc-a815-e8ed92b3e92a)
+
+outputs
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_16](https://github.com/user-attachments/assets/18f9907b-171d-4dca-9e18-f52ede0e0976)
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_32](https://github.com/user-attachments/assets/e8b06b62-cdba-48b3-9478-f909b8c66074)
+
 ## Key Results
 
 - **XGBClassifier** achieved high precision (95.7%) in identifying non-default loans.
@@ -159,30 +135,49 @@ In today's rapidly evolving financial sector, the need for precise and reliable 
 - **Continuous Model Monitoring**: Regularly update models as new data becomes available.
 - **Advanced Techniques**: Explore ensemble learning methods for comprehensive credit risk prediction.
 
-## Instructions to Run the Project
+## Getting Started
 
 ### Prerequisites
 - Python 3.7+
 - Libraries: pandas, scikit-learn, xgboost, shap, lime, streamlit
 
-### Install dependencies using:
-pip install -r requirements.txt
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/credit-risk-assessment.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd credit-risk-assessment
+   ```
+
+3. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
 ### Running the Streamlit App
-To start the Streamlit app, run the following command:
 
+To run the Streamlit app locally:
+
+```
 streamlit run app.py
+```
 
-Once the app is running, navigate to the provided local URL in your browser to interact with the loan prediction models.
+Navigate to the provided local URL in your browser to interact with the loan prediction models.
 
+## Contributing
 
+Contributions to this project are welcome. Please follow these steps:
 
-# Credit-Risk-Assessment-with-Loan-Amount-Prediction
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_01](https://github.com/user-attachments/assets/18110a12-ba21-4935-9990-1076ee928c5a)
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_15](https://github.com/user-attachments/assets/32096529-563e-4ce3-a1bd-b36e357c9ab7)
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 15_17_36](https://github.com/user-attachments/assets/7a5290c9-44b6-4bcc-a815-e8ed92b3e92a)
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
+## License
 
-outputs
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_16](https://github.com/user-attachments/assets/18f9907b-171d-4dca-9e18-f52ede0e0976)
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_32](https://github.com/user-attachments/assets/e8b06b62-cdba-48b3-9478-f909b8c66074)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
