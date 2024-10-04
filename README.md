@@ -91,10 +91,15 @@ Three models were used to predict loan amounts:
 ## Model Interpretation
 
 ### XGBClassifier Interpretation:
-- **LIME** was used for local interpretability, showing how different features impacted the probability of loan default.
-- **Top Features**: `loan_grade`, `person_income`, `cb_person_cred_hist_length`, `person_emp_length`.
+![e8498eec-54a2-4b76-a572-c4118c50e35e](https://github.com/user-attachments/assets/79fc1c01-7ffe-4eaf-b700-2b6d20395b1f)
+ult.
+- **LIME** was used for local interpretability, showing how different features impacted the probability of loan defa
+- **Top Features**: `loan_intent`, `loan_grade`, `person_income`, `person_emp_length`.
+
 
 ### XGBRegressor Interpretation:
+![0ecd2439-b8d8-47d6-b7a1-55f1ab3f77cb](https://github.com/user-attachments/assets/d5265862-89a5-4972-a881-d89b9163dc61)
+![fdc49a8d-6319-433c-a644-1e695343d419](https://github.com/user-attachments/assets/b9878011-f3b0-45c2-8fc5-74193049d1ef)
 - **SHAP** summary plot showed that `loan_percent_income` and `person_income` were the most impactful features.
 - Higher values for these features increased the loan amount prediction, while lower values decreased the predicted amount.
 
