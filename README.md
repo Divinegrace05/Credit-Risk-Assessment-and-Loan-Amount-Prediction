@@ -150,15 +150,10 @@ In today's rapidly evolving financial sector, the need for precise and reliable 
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/credit-risk-assessment.git
+   git clone https://github.com/Divinegrace05/Credit-Risk-Assessment-and-Loan-Amount-Prediction
    ```
 
-2. Navigate to the project directory:
-   ```
-   cd credit-risk-assessment
-   ```
-
-3. Install dependencies:
+2. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
