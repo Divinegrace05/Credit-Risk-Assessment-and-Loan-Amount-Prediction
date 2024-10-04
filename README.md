@@ -1,16 +1,21 @@
 # Credit Risk Assessment and Loan Prediction
 
-![Credit Risk Assessment and Loan Prediction](Risk.jpeg)
+![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
 
-## Overview
 
-This project involves analyzing a loan dataset to predict credit risk and loan amounts. The dataset contains key information about borrowers, including age, income, home ownership, employment length, loan intent, loan grade, credit history, and more. 
+## Project Summary
+This project addresses critical challenges in financial lending by analyzing a loan dataset to predict credit risk and loan amounts. The dataset, sourced from Kaggle, contains 32,581 observations across 12 variables, including borrower demographics, financial indicators, and loan characteristics.
+Data preparation included handling missing values, removing duplicates, and addressing outliers in income and employment length. We used pandas for data manipulation and scikit-learn for preprocessing, applying StandardScaler for feature scaling and LabelEncoder for categorical variables.
+For credit risk prediction, we tested multiple models such as Logistic Regression, Decision Trees, Random Forest, K-Nearest Neighbors, Gradient Boosting, and XGBoost. XGBoost proved most effective, achieving 93.8% accuracy and an F1 score of 0.842. Loan amount prediction employed Linear Regression, XGBoost, and Artificial Neural Networks, with XGBoost again leading with an R² of 0.99 and an RMSE of 498.28.
+Model performance was assessed using an 80-20 train-test split, with metrics such as accuracy, precision, and F1 score for classification, and RMSE, MSE, and R² for regression. SHAP and LIME were applied to enhance interpretability, identifying income, loan-to-income ratio, and loan intent as key predictors.
+The project was deployed using Streamlit, offering an interactive interface for real-time credit risk and loan amount predictions. This deployment enhances accessibility, providing valuable tools for lenders to make informed decisions.
 
 The project includes:
 - Data cleaning and preprocessing
 - Exploratory data analysis (EDA)
 - Building and evaluating machine learning models
 - Model interpretability using SHAP and LIME
+- Streamlit App Deployment
 
 ### Objectives:
 1. **Credit Risk Classification**: To predict whether a loan applicant will default or not based on their profile.
@@ -134,30 +139,37 @@ Three models were used to predict loan amounts:
 - **Top features** influencing predictions were borrower income, credit history length, and loan grade.
 
 ## Conclusion
+In today's rapidly evolving financial sector, the need for precise and reliable credit risk assessment and loan amount prediction models is paramount for informed and data-driven lending decisions. This project demonstrates how machine learning, particularly the use of XGBoost models, significantly enhances the accuracy and efficiency of these processes, helping financial institutions manage risk more effectively while providing better loan offerings tailored to borrowers' needs.
 
-The project demonstrates how machine learning models, especially XGBoost, can significantly improve credit risk assessment and loan amount predictions. Financial institutions can leverage these models to minimize risk, make informed lending decisions, and provide personalized loan offerings.
+## Findings
+1. **Borrower Profiles and Loan Intentions**: Significant insights into financial behaviors and needs revealed that many loans were taken for educational purposes and home improvement. Financial institutions could design products that cater to these segments.
+  
+2. **Default History and Risk Mitigation**: The dataset shows a significant proportion of borrowers with a default history, highlighting the need for better risk assessment strategies and financial literacy programs.
 
-### Recommendations
-1. **Tailored Loan Products**: Customize loans for different borrower segments based on the model’s insights.
-2. **Use ML for Risk Assessment**: Implement machine learning models like XGBoost to improve the accuracy of loan approval processes.
-3. **Financial Literacy Programs**: Improve borrowers' financial health by offering educational initiatives.
-4. **Continuous Model Monitoring**: Regularly update models as new data becomes available to maintain predictive performance.
+3. **Demographic Insights and Borrowing Patterns**: Analysis indicated that younger individuals (21-30 age group) primarily apply for educational loans, while older borrowers request personal loans. This calls for tailored loan offerings based on borrower demographics.
 
+4. **Model Performance and Comparative Analysis**: The XGBoost models outperformed others in both credit risk classification and loan amount prediction, achieving high accuracy and R² values.
 
-Instructions to Run the Project
-Prerequisites
-Python 3.7+
-Libraries: pandas, scikit-learn, xgboost, shap, lime, streamlit
-Install dependencies using:
+5. **Feature Importance**: Analysis showed that features such as income, loan grade, and loan percent income significantly influenced loan outcomes, providing actionable insights for financial institutions.
 
-bash
-Copy code
+## Recommendations for Financial Institutions
+- **Custom Loan Products**: Develop targeted loan offerings for specific borrower segments.
+- **Enhance Risk Assessment**: Integrate machine learning models into the loan approval process.
+- **Financial Literacy Programs**: Implement educational initiatives for borrowers.
+- **Continuous Model Monitoring**: Regularly update models as new data becomes available.
+- **Advanced Techniques**: Explore ensemble learning methods for comprehensive credit risk prediction.
+
+## Instructions to Run the Project
+
+### Prerequisites
+- Python 3.7+
+- Libraries: pandas, scikit-learn, xgboost, shap, lime, streamlit
+
+### Install dependencies using:
 pip install -r requirements.txt
-Running the Streamlit App
-To start the Streamlit app, run the following command:
 
-bash
-Copy code
+### Running the Streamlit App
+To start the Streamlit app, run the following command:
 streamlit run app.py
 Once the app is running, navigate to the provided local URL in your browser to interact with the loan prediction models.
 
