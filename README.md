@@ -93,9 +93,9 @@ Three models were used to predict loan amounts:
 
 ### XGBClassifier Interpretation:
 ![e8498eec-54a2-4b76-a572-c4118c50e35e](https://github.com/user-attachments/assets/79fc1c01-7ffe-4eaf-b700-2b6d20395b1f)
+![Lime Viz](Images/Lime_Viz.png)
 - **LIME** was used for local interpretability, showing how different features impacted the probability of loan default.
 - **Top Features**: `loan_intent`, `loan_grade`, `person_income`, `person_emp_length`.
-
 
 ### XGBRegressor Interpretation:
 ![0ecd2439-b8d8-47d6-b7a1-55f1ab3f77cb](https://github.com/user-attachments/assets/d5265862-89a5-4972-a881-d89b9163dc61)
@@ -103,35 +103,53 @@ Three models were used to predict loan amounts:
 - **SHAP** summary plot showed that `loan_percent_income` and `person_income` were the most impactful features.
 - Higher values for these features increased the loan amount prediction, while lower values decreased the predicted amount.
 
-## Deployment
-[Credit Risk and Loan Amount Prediction App](https://loanamountprediction.streamlit.app/)
-
 ## Key Results
 
 - **XGBClassifier** achieved high precision (95.7%) in identifying non-default loans.
 - **XGBRegressor** produced highly accurate loan amount predictions with R² of 0.994, RMSE of 498.29.
 - **Top features** influencing predictions were borrower income, credit history length, and loan grade.
 
-## Conclusion
-In today's rapidly evolving financial sector, the need for precise and reliable credit risk assessment and loan amount prediction models is paramount for informed and data-driven lending decisions. This project demonstrates how machine learning, particularly the use of XGBoost models, significantly enhances the accuracy and efficiency of these processes, helping financial institutions manage risk more effectively while providing better loan offerings tailored to borrowers' needs.
+## Deployment
+[Credit Risk and Loan Amount Prediction App](https://loanamountprediction.streamlit.app/)
 
-## Findings
-1. **Borrower Profiles and Loan Intentions**: Significant insights into financial behaviors and needs revealed that many loans were taken for educational purposes and home improvement. Financial institutions could design products that cater to these segments.
-  
-2. **Default History and Risk Mitigation**: The dataset shows a significant proportion of borrowers with a default history, highlighting the need for better risk assessment strategies and financial literacy programs.
+## Key Findings
 
-3. **Demographic Insights and Borrowing Patterns**: Analysis indicated that younger individuals (21-30 age group) primarily apply for educational loans, while older borrowers request personal loans. This calls for tailored loan offerings based on borrower demographics.
+### 1. Borrower Profiles and Loan Intentions
+- Many loans were taken for **educational purposes** and **home improvement**.
+- A significant portion of borrowers are **renters**, not homeowners.
+- **Recommendation**: Financial institutions should design loan products that cater to renters and young professionals, offering flexible terms and repayment options.
 
-4. **Model Performance and Comparative Analysis**: The XGBoost models outperformed others in both credit risk classification and loan amount prediction, achieving high accuracy and R² values.
+### 2. Default History and Risk Mitigation
+- A notable number of borrowers had **default histories**, emphasizing the need for robust risk assessment models.
+- **Recommendation**: Implement more sophisticated machine learning models and **financial literacy programs** to help borrowers manage credit and reduce default risks.
 
-5. **Feature Importance**: Analysis showed that features such as income, loan grade, and loan percent income significantly influenced loan outcomes, providing actionable insights for financial institutions.
+### 3. Demographic Insights and Borrowing Patterns
+- **Younger borrowers** (ages 21-30) mainly seek loans for education.
+- **Older borrowers** tend to request loans for **home improvement** or **debt consolidation**.
+- **Recommendation**: Lenders should develop **demographic-specific financial products** with favorable terms for educational loans and flexible options for older borrowers.
+
+### 4. Model Performance
+- **XGBoost** models outperformed other algorithms for both:
+  - **Credit Risk Classification**: Achieved 93% accuracy and 95% precision.
+  - **Loan Amount Prediction**: Achieved an RMSE of 498 and an R² score of 0.99.
+- **Hyperparameter tuning** did not significantly improve performance, suggesting XGBoost performs well with default settings.
+
+### 5. Feature Importance
+- Key features for loan outcomes include:
+  - **Borrower income**
+  - **Loan grade**
+  - **Loan percent income**
+- **Recommendation**: Financial institutions can refine their credit policies using these insights to better understand borrower behavior and risk.
 
 ## Recommendations for Financial Institutions
-- **Custom Loan Products**: Develop targeted loan offerings for specific borrower segments.
-- **Enhance Risk Assessment**: Integrate machine learning models into the loan approval process.
-- **Financial Literacy Programs**: Implement educational initiatives for borrowers.
-- **Continuous Model Monitoring**: Regularly update models as new data becomes available.
-- **Advanced Techniques**: Explore ensemble learning methods for comprehensive credit risk prediction.
+1. **Custom Loan Products**: Develop loan offerings tailored to specific borrower segments, such as young professionals and education seekers.
+2. **Enhance Risk Assessment**: Incorporate machine learning models like XGBoost to predict credit risk with high accuracy.
+3. **Financial Literacy Programs**: Educate borrowers to reduce default rates and promote healthier financial habits.
+4. **Continuous Model Monitoring**: Regularly update models with new borrower data to maintain accuracy and relevance.
+5. **Advanced Techniques**: Explore ensemble learning methods to improve credit risk prediction models.
+
+This project demonstrates the power of machine learning in revolutionizing credit risk assessment and loan prediction. By adopting these techniques, financial institutions can make more informed decisions, reduce default rates, and better serve diverse borrower profiles. Continued investment in machine learning and AI technologies will be key to optimizing financial services and driving sustainable growth.
+
 
 ## Getting Started
 
