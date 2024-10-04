@@ -1,6 +1,5 @@
-# Credit Risk Assessment and Loan Amount Prediction
-
 ![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
+# Credit Risk Assessment and Loan Amount Prediction
 
 ## Project Summary
 This project addresses critical challenges in financial lending by analyzing a loan dataset to predict credit risk and loan amounts. The dataset, sourced from [Kaggle](https://www.kaggle.com/datasets/laotse/credit-risk-dataset?resource=download), contains 32,581 observations across 12 variables, including borrower demographics, financial indicators, and loan characteristics.
