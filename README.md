@@ -93,7 +93,7 @@ Three models were used to predict loan amounts:
 
 ### XGBClassifier Interpretation:
 ![e8498eec-54a2-4b76-a572-c4118c50e35e](https://github.com/user-attachments/assets/79fc1c01-7ffe-4eaf-b700-2b6d20395b1f)
-![Lime Viz](Images/Lime_Viz.png)
+![Lime Viz](Images/LimeViz.png)
 - **LIME** was used for local interpretability, showing how different features impacted the probability of loan default.
 - **Top Features**: `loan_intent`, `loan_grade`, `person_income`, `person_emp_length`.
 
