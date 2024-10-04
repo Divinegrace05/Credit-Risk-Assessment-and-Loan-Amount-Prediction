@@ -1,4 +1,4 @@
-# Credit Risk Assessment and Loan Prediction
+# Credit Risk Assessment and Loan Amount Prediction
 
 ![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
 
