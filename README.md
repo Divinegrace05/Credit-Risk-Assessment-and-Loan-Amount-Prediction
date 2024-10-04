@@ -45,12 +45,12 @@ The project was deployed using Streamlit, offering an interactive interface for 
 3. **Loan Intent by Age Group**:
    - Borrowers aged 21-30 mainly take loans for education, while older borrowers (51-60) focus on personal and medical reasons.
 
-   ![Loan Intent by Age Group](Images/loan_intent_by_age_group)
+   ![Loan Intent by Age Group](Images/loan_intent_by_age_group.png)
 
 4. **Default Status by Age Group**:
    - Younger borrowers (21-30) tend to default more often.
 
-   ![Default Status by Age Group](Images/default_status_by_age_group)
+   ![Default Status by Age Group](Images/default_status_by_age_group.png)
    
 
 ## Modeling
