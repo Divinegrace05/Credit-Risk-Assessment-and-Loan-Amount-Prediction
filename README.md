@@ -3,5 +3,5 @@
 ![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_15](https://github.com/user-attachments/assets/32096529-563e-4ce3-a1bd-b36e357c9ab7)
 
 outputs
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_24_52](https://github.com/user-attachments/assets/076f2905-ca2c-4600-9234-fa13343e93ad)
-![creditRiskLoanPredApp - Google Chrome 04_10_2024 02_25_19](https://github.com/user-attachments/assets/33ea6cda-48f3-4141-9a6e-66c9f1ff9079)
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_16](https://github.com/user-attachments/assets/18f9907b-171d-4dca-9e18-f52ede0e0976)
+![creditRiskLoanPredApp - Google Chrome 04_10_2024 14_52_32](https://github.com/user-attachments/assets/e8b06b62-cdba-48b3-9478-f909b8c66074)
