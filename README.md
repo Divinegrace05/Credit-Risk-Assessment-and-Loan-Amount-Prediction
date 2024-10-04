@@ -51,6 +51,7 @@ The project was deployed using Streamlit, offering an interactive interface for 
    - Younger borrowers (21-30) tend to default more often.
 
    ![Default Status by Age Group](Images/default_status_by_age_group)
+   
 
 ## Modeling
 
