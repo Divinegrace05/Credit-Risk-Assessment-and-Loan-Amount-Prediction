@@ -1,5 +1,6 @@
-![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
 # Credit Risk Assessment and Loan Amount Prediction
+![Credit Risk](https://github.com/user-attachments/assets/bffc185a-2ba8-414e-a6f6-0ce799b40b19)
+
 
 ## Project Summary
 This project addresses critical challenges in financial lending by analyzing a loan dataset to predict credit risk and loan amounts. The dataset, sourced from [Kaggle](https://www.kaggle.com/datasets/laotse/credit-risk-dataset?resource=download), contains 32,581 observations across 12 variables, including borrower demographics, financial indicators, and loan characteristics.
@@ -91,8 +92,7 @@ Three models were used to predict loan amounts:
 
 ### XGBClassifier Interpretation:
 ![e8498eec-54a2-4b76-a572-c4118c50e35e](https://github.com/user-attachments/assets/79fc1c01-7ffe-4eaf-b700-2b6d20395b1f)
-ult.
-- **LIME** was used for local interpretability, showing how different features impacted the probability of loan defa
+- **LIME** was used for local interpretability, showing how different features impacted the probability of loan default.
 - **Top Features**: `loan_intent`, `loan_grade`, `person_income`, `person_emp_length`.
 
 
