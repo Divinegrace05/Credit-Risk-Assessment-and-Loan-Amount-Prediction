@@ -11,7 +11,7 @@ For credit risk prediction, we tested multiple models such as Logistic Regressio
 
 Model performance was assessed using an 80-20 train-test split, with metrics such as accuracy, precision, and F1 score for classification, and RMSE, MSE, and R² for regression. SHAP and LIME were applied to enhance interpretability, identifying income, loan-to-income ratio, and loan intent as key predictors.
 
-The project was deployed using Streamlit, offering an interactive interface for real-time credit risk and loan amount predictions. This [deployment](https://loanamountprediction.streamlit.app/) enhances accessibility, providing valuable tools for lenders to make informed decisions.
+The project was deployed using Streamlit, offering an interactive interface for real-time credit risk and loan amount predictions. This deployment enhances accessibility, providing valuable tools for lenders to make informed decisions.
 
 ## Business Understanding
 
@@ -106,7 +106,7 @@ Three models were used to predict loan amounts:
 ## Key Results
 
 - **XGBClassifier** achieved high precision (93.8%) in identifying non-default loans.
-- **XGBRegressor** produced highly accurate loan amount predictions with R² of 0.994, RMSE of 498.29.
+- **XGBRegressor** produced highly accurate loan amount predictions with R² of 0.99, RMSE of 498.29.
 - **Top features** influencing predictions were borrower income, credit history length, and loan grade.
 
 ## Deployment
