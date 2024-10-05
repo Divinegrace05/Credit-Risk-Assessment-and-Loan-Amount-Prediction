@@ -14,6 +14,12 @@ Model performance was assessed using an 80-20 train-test split, with metrics suc
 The project was deployed using Streamlit, offering an interactive interface for real-time credit risk and loan amount predictions. This deployment enhances accessibility, providing valuable tools for lenders to make informed decisions.
 
 ## Business Understanding
+With the growing significance of consumer credit and lending, accurate and efficient credit risk assessment is crucial for both financial institutions and customers. These assessments safeguard banks' financial health, increase credit volume, and promote responsible lending, ensuring economic stability and loans for reliable borrowers. Misjudging a borrower’s risk can lead to losses for institutions, while inaccurate loan amounts may either overburden the customer or limit their potential.
+
+Accurate loan amount prediction is essential for financial institutions to avoid excessive risk. Credit risk classification segments borrowers based on their creditworthiness, influencing loan approvals and interest rates. Loan amount prediction uses factors like income, employment stability, and credit history to estimate a suitable loan, reducing the risk of default.
+
+By applying machine learning, lenders can balance credit access with maintaining a healthy loan portfolio, benefiting both borrowers and financial institutions.
+
 
 ### Stakeholders
 - Financial Institutions (e.g., Banks, Credit Unions): Responsible for managing lending and risk.
